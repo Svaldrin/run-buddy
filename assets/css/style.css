@@ -4,6 +4,12 @@
   padding: 0;
 }
 
+:root {
+  --primary-color: #fce138;
+  --secondary-color: #024e76;
+  --tertiary-color: #39a6b2;
+}
+
 body {
   color: #39a6b2;
   font-family: Helvetica, Arial, sans-serif;
@@ -14,25 +20,26 @@ body {
 
 header {
   padding: 20px 35px;
-  background-color: #39a6b2;
+  background-color: var(--tertiary-color);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  position: -webkit-sticky;
   position: sticky;
+  position: -webkit-sticky;
   top: 0;
-  background-image: url(../images/hero-bg.jpg);
+  background-image: url("../images/hero-bg.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: 80%;
+  z-index: 9999;
 }
 
 header h1 {
   font-weight: bold;
   margin: 0;
   font-size: 36px;
-  color: #fce138;
-  text-shadow: 0 0 10px rgba(0,0,0,,0.5);
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 header a {
@@ -53,17 +60,17 @@ header nav ul {
 }
 
 header nav ul li a {
-  padding:  10px 15px;
+  padding: 10px 15px;
   font-weight: lighter;
   font-size: 1.55vw;
-  text-shadow: 0, 0, 0, rgba(0,0,0,,0.5);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 header nav ul li a:hover {
-  background: #fce138;
+  background: var(--primary-color);
   color: #024e76;
   border-radius: 15px;
-  text-shadow: none; 
+  text-shadow: none;
 }
 
 /* HEADER / NAVBAR STYLES END */
@@ -72,7 +79,7 @@ header nav ul li a:hover {
 
 /* FOOTER STYLES START */
 footer {
-  background: #fce138;
+  background: var(--primary-color);
   padding: 40px 35px;
   display: flex;
   justify-content: space-between;
@@ -126,18 +133,22 @@ section {
   font-style: italic;
   font-size: 55px;
   color: #fce138;
-  text-shadow: 0, 0, 0, rgba(0,0,0,,0.5);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-form {
   border: 3px solid #024e76;
-  background-color: rgba(252, 225, 56, 0.8);
+  background-color: rgba(255, 225, 56, 0.8);
   padding: 20px;
   color: #024e76;
   width: 40%;
   margin: 3.5%;
-  box-shadow: 0, 0, 0, rgba(0,0,0,,0.5);
   border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.hero-form button:hover {
+  background-color: var(--tertiary-color);  
 }
 
 .hero-form h3 {
@@ -149,19 +160,19 @@ section {
 }
 
 .form-input {
-  border: 1px solid #024e76;
+  border: 1px solid var(--secondary-color);
   display: block;
   padding: 7px 15px;
   font-size: 16px;
-  color: #024e76;
+  color: var(--secondary-color);
   width: 100%;
-  margin-bottom: 15px;
+  margin-bottom: 15px; 
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.75); 
+  background-color: rgba(255,255,255, 0.75);
 }
 
 .form-input:focus {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255,255,255, 1);
   outline: none;
 }
 
@@ -178,8 +189,68 @@ section {
   border-radius: 10px;
 } 
 
-.hero-form button:hover {
-  background-color: #39a6b2;
+.checkbox-wrapper input, .radio-wrapper input {
+  opacity: 0;
+}
+
+.checkbox-wrapper label, .radio-wrapper label {
+  position: relative;
+  left: 10px;
+  margin: 10px;
+  line-height: 1.6;
+  
+}
+
+.checkbox-wrapper label::before, .radio-wrapper label::before {
+  content: "";
+  height: 20px;
+  width: 20px;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid #024e76;
+  position: absolute;
+  top: -4px;
+  left: -30px;
+  
+}
+
+.radio-wrapper label::before {
+  border-radius: 50%;
+}
+
+.radio-wrapper label::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #024e76;
+  position: absolute;
+  left: -29px;
+  top: -3px;
+  background-image: radial-gradient(circle, #39a6b2, #024e76);
+}
+
+.checkbox-wrapper label::after {
+  content: "";
+  height: 6px;
+  width: 14px;
+  border-left: 2px solid #024e76;
+  border-bottom: 2px solid #024e76;
+  position: absolute;
+  left: -26px;
+  top: 1px;
+  transform: rotate(-58deg);
+}
+
+
+
+.checkbox-wrapper input + label::after, 
+.radio-wrapper input + label::after {
+  content: none;
+}
+
+.checkbox-wrapper input:checked + label::after, 
+.radio-wrapper input:checked + label::after {
+  content: "";
 }
 /* HERO STYLES END */
 
@@ -226,17 +297,16 @@ section {
   margin: 50px auto;
   padding-bottom: 50px;
   width: 80%;
+  border-bottom: 1px solid #39a6b2;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #39a6b2;
 }
 
 .step:last-child {
   border-bottom: none;
 }
-
 
 .step h3 {
   color: #024e76;
@@ -274,7 +344,6 @@ section {
   line-height: 1.5;
   color: #024e76;
 }
-
 /* WHAT YOU DO STYLES END */
 
 /* MEET THE TRAINERS START */
@@ -367,11 +436,11 @@ section {
   margin-bottom: 15px;
   margin-top: 5px;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255,255,255, 0.75);
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
-  background-color: rgba(255, 255, 255, 1);
+  background-color: rgba(255,255,255, 1);
   outline: none;
 }
 
@@ -394,8 +463,6 @@ section {
 .contact-info a {
   color: #fce138;
 }
-
-
 /* REACH OUT STYLES END */
 
 /* UTILITIES */
@@ -411,10 +478,9 @@ section {
   display: flex;
 }
 
-/* Media Query for smaller desktop screens and smaller */
+/* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 @media screen and (max-width: 980px) {
   header {
-    /* this will be applied on any screen smaller than 980px */
     padding-bottom: 0;
     justify-content: center;
     position: relative;
@@ -433,7 +499,6 @@ section {
 
   header nav ul li a {
     font-size: 20px;
-
   }
 
   footer h2, footer div {
@@ -444,7 +509,7 @@ section {
   .hero-cta, .hero-form {
     width: 100%;
   }
-
+  
   .hero-cta {
     text-align: center;
   }
@@ -452,22 +517,19 @@ section {
   .section-title {
     width: 80%;
   }
-
+  
   .trainer {
     flex: 0 70%;
-
   }
-
-  contact-info iframe {
+  
+  .contact-info iframe{
     flex: 1 100%;
   }
-
 }
 
-/* Media Query for tablets and smaller */
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
 @media screen and (max-width: 768px) {
   section {
-    /* this will be applied on any screen between 768px and 575px */
     padding: 30px 15px;
   }
 
@@ -480,7 +542,6 @@ section {
     flex: 2 100%;
     text-align: center;
     justify-content: center;
-
   }
 
   .step-img {
@@ -491,29 +552,30 @@ section {
   }
 
   .step-text {
-    flex: 100%;
+    flex: 100%;  
+  }
+
+  .trainer-bio h3, .trainer-bio h4 {
+    display: block;
   }
 }
 
-/* Media Query for mobile phones and smaller */
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
 @media screen and (max-width: 575px) {
   .hero-form button {
-    /*  this will be applied on any screen smaller than 575px */
     width: 100%;
   }
 
   .section-title {
     width: 95%;
   }
-  
+
   .intro p {
     width: 100%;
-
   }
 
   .trainer {
     flex: 0 100%;
-
   }
 
   .contact-info {
@@ -527,5 +589,4 @@ section {
   .contact-form {
     order: 3;
   }
-
 }
